@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane onDragDetected="#openRegister" prefHeight="400.0" prefWidth="600.0" stylesheets="@Register-design.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheily.LoginController">
+   <children>
+      <Pane layoutX="-2.0" prefHeight="406.0" prefWidth="271.0" styleClass="landing-pane" stylesheets="@login-design.css">
+         <children>
+            <Text layoutX="32.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Text>
+            <Text layoutX="75.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scheily">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="242.0" fitWidth="214.0" layoutX="27.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/scheily%20-%20Edited.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+      <Button layoutX="352.0" layoutY="259.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="192.0" styleClass="login-button" stylesheets="@login-design.css" text="Log In" />
+      <TextField layoutX="355.0" layoutY="151.0" prefHeight="25.0" prefWidth="169.0" promptText="Username" styleClass="text-field" stylesheets="@login-design.css" />
+      <TextField layoutX="355.0" layoutY="190.0" prefHeight="25.0" prefWidth="169.0" promptText="Password" styleClass="text-field" stylesheets="@login-design.css" />
+      <Text layoutX="382.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign-In">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Text>
+      <Text layoutX="363.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remember me" />
+      <CheckBox layoutX="340.0" layoutY="230.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="3.0" />
+      <Hyperlink fx:id="forgotPasswordLink" layoutX="448.0" layoutY="227.0" onAction="#handleForgotPassword" text="Forgot Password ?" underline="true" visited="true" />
+      <Hyperlink layoutX="461.0" layoutY="310.0" onAction="#openRegister" text="Register Here" underline="true" visited="true">
+         <effect>
+            <Blend mode="LIGHTEN" />
+         </effect>
+      </Hyperlink>
+      <Text layoutX="333.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account ?" />
+   </children>
+</AnchorPane>

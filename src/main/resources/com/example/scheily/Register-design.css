@@ -1,0 +1,67 @@
+.root {
+    -fx-background-color: #FFFFFF;
+    -fx-font-family: "Poppins", sans-serif;
+}
+
+.label {
+    -fx-text-fill: #000000;
+}
+.text-field {
+    -fx-pref-width: 150
+    ;
+    -fx-pref-height: 27;
+    -fx-border-color: #BFBFBF;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-background-color: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-padding: 0 10 0 10;
+}
+
+.text-field:focused {
+    -fx-border-color: #5E9EFF;
+    -fx-border-width: 1.5;
+}
+
+.text-field .text {
+    -fx-fill: #333333;
+}
+
+.text-field:empty {
+    -fx-prompt-text-fill: #B0B0B0;
+}
+
+.text-field:hover {
+    -fx-border-color: #A0A0A0;
+}
+
+
+
+
+
+.button {
+    -fx-background-color: #1E1E1E;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 25;
+    -fx-pref-width: 200;
+    -fx-pref-height: 38;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 5, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: #333333;
+}
+
+.hyperlink {
+    -fx-text-fill: #000000;
+    -fx-underline: false;
+}
+
+.hyperlink:hover {
+    -fx-underline: true;
+    -fx-font-weight: bold;
+}

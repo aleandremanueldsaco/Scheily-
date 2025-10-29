@@ -1,0 +1,44 @@
+.root {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+}
+
+VBox {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}
+
+.otp-box {
+    -fx-font-size: 20px;
+    -fx-alignment: center;
+    -fx-border-color: #aaa;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: #fff;
+    -fx-pref-width: 50;
+    -fx-pref-height: 50;
+    -fx-text-alignment: center;
+}
+
+.otp-box:focused {
+    -fx-border-color: #4CAF50;
+    -fx-border-width: 2;
+}
+
+.resend-btn {
+    -fx-background-color: #2E2E2E;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-pref-width: 185;
+    -fx-pref-height: 35;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.resend-btn:hover {
+    -fx-background-color: #444;
+}
+
+.resend-btn:pressed {
+    -fx-background-color: #1C1C1C;
+}

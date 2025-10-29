@@ -1,0 +1,65 @@
+
+.landing-pane {
+    -fx-background-color: #e3e2da;
+    -fx-background-radius: 0 100 100 0;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 2, 4);
+    -fx-padding: 40px;
+}
+
+.login-button {
+    -fx-background-color: #262626;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 25px;
+    -fx-padding: 8px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 4, 0, 0, 2);
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-transition: all 0.2s ease-in-out;
+}
+.text-field {
+    -fx-pref-width: 196;
+    -fx-pref-height: 30;
+    -fx-border-color: #BFBFBF;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-background-color: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-padding: 0 10 0 10;
+}
+
+.text-field:focused {
+    -fx-border-color: #5E9EFF;
+    -fx-border-width: 1.5;
+}
+
+.text-field .text {
+    -fx-fill: #333333;
+}
+
+.text-field:empty {
+    -fx-prompt-text-fill: #B0B0B0;
+}
+
+.text-field:hover {
+    -fx-border-color: #A0A0A0;
+}
+
+
+
+.login-button:hover {
+    -fx-background-color: #1a1a1a;
+    -fx-translate-y: -2px;
+}
+
+
+.login-button:pressed {
+    -fx-background-color: #333333;       /* lighter shade */
+    -fx-translate-y: 1px;                /* pressed down look */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 2, 0, 0, 1);
+}
+
+
