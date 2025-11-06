@@ -65,3 +65,9 @@
     -fx-underline: true;
     -fx-font-weight: bold;
 }
+.text-field:hover {
+    -fx-background-color: #f7f7f7;
+    -fx-border-color: #5b9bd5;
+    -fx-border-width: 2px;
+    -fx-text-fill: black;
+}
