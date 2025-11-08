@@ -6,11 +6,29 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+
+
 import java.io.IOException;
 
 public class LoginController {
+
+    @FXML
+    private void backToLogin(ActionEvent event) throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("login-page.fxml"));
+
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     private void handleForgotPassword(ActionEvent event) throws IOException {
@@ -25,13 +43,7 @@ public class LoginController {
         stage.setScene(scene);
         stage.show();
     }
-    @FXML
-    private void handleBackToLogin(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("login-page.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
+
     @FXML
     private void openOTPPopup() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("otp-popup.fxml"));
@@ -50,4 +62,6 @@ public class LoginController {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
 }
+

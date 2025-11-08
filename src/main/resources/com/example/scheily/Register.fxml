@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@Register-design.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheily.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@Register-design.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheily.RegisterController">
    <children>
       <Pane fx:id="rightBar" layoutX="410.0" prefHeight="406.0" prefWidth="261.0" rotate="180.0" styleClass="landing-pane" stylesheets="@login-design.css">
          <children>
@@ -32,16 +32,16 @@
             </Text>
          </children>
       </Pane>
-      <TextField layoutX="31.0" layoutY="96.0" prefHeight="25.0" prefWidth="142.0" promptText="First name..." stylesheets="@Register-design.css" />
-      <TextField layoutX="31.0" layoutY="133.0" prefHeight="25.0" prefWidth="142.0" promptText="Last name..." stylesheets="@Register-design.css" />
-      <TextField layoutX="31.0" layoutY="170.0" prefHeight="25.0" prefWidth="142.0" promptText="Birthday..." stylesheets="@Register-design.css" />
-      <TextField layoutX="31.0" layoutY="207.0" prefHeight="25.0" prefWidth="142.0" promptText="Course..." stylesheets="@Register-design.css" />
-      <TextField layoutX="194.0" layoutY="96.0" prefHeight="25.0" prefWidth="142.0" promptText="Email Address..." stylesheets="@Register-design.css" />
-      <TextField layoutX="194.0" layoutY="133.0" prefHeight="25.0" prefWidth="142.0" promptText="Username..." stylesheets="@Register-design.css" />
-      <TextField layoutX="194.0" layoutY="170.0" prefHeight="25.0" prefWidth="142.0" promptText="Students ID..." stylesheets="@Register-design.css" />
-      <TextField layoutX="194.0" layoutY="207.0" prefHeight="25.0" prefWidth="142.0" promptText="Year Level..." stylesheets="@Register-design.css" />
-      <TextField layoutX="117.0" layoutY="246.0" prefHeight="25.0" prefWidth="142.0" promptText="Password..." stylesheets="@Register-design.css" />
-      <Button fx:id="registerButton" layoutX="92.0" layoutY="289.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="192.0" stylesheets="@Register-design.css" text="Register" />
+      <TextField fx:id="firstNameField" layoutX="31.0" layoutY="96.0" prefHeight="25.0" prefWidth="142.0" promptText="First name..." stylesheets="@Register-design.css" />
+      <TextField fx:id="lastNamefield" layoutX="31.0" layoutY="133.0" prefHeight="25.0" prefWidth="142.0" promptText="Last name..." stylesheets="@Register-design.css" />
+      <TextField fx:id="birthDatefield" layoutX="31.0" layoutY="170.0" prefHeight="25.0" prefWidth="142.0" promptText="Birthday..." stylesheets="@Register-design.css" />
+      <TextField fx:id="courseField" layoutX="31.0" layoutY="207.0" prefHeight="25.0" prefWidth="142.0" promptText="Course..." stylesheets="@Register-design.css" />
+      <TextField fx:id="emailField" layoutX="194.0" layoutY="96.0" prefHeight="25.0" prefWidth="142.0" promptText="Email Address..." stylesheets="@Register-design.css" />
+      <TextField fx:id="usernameField" layoutX="194.0" layoutY="133.0" prefHeight="25.0" prefWidth="142.0" promptText="Username..." stylesheets="@Register-design.css" />
+      <TextField fx:id="studentIdField" layoutX="194.0" layoutY="170.0" prefHeight="25.0" prefWidth="142.0" promptText="Students ID..." stylesheets="@Register-design.css" />
+      <TextField fx:id="yearLevelField" layoutX="194.0" layoutY="207.0" prefHeight="25.0" prefWidth="142.0" promptText="Year Level..." stylesheets="@Register-design.css" />
+      <TextField fx:id="passwordField" layoutX="117.0" layoutY="246.0" prefHeight="25.0" prefWidth="142.0" promptText="Password..." stylesheets="@Register-design.css" />
+      <Button fx:id="registerButton" layoutX="92.0" layoutY="289.0" mnemonicParsing="false" onAction="#onRegister" prefHeight="39.0" prefWidth="192.0" stylesheets="@Register-design.css" text="Register" />
       <Text layoutX="118.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign-Up">
          <font>
             <Font size="39.0" />
