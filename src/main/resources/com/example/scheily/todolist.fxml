@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.scheily.ToDoListController"
+            stylesheets="@todolist-style.css">
+
+
+<!-- Sidebar -->
+    <VBox prefWidth="200" styleClass="sidebar">
+        <Label text="Account" styleClass="sidebar-title"/>
+        <Separator/>
+        <Button text="Home" styleClass="sidebar-btn"/>
+        <Button text="To-Do List" styleClass="sidebar-btn active"/>
+        <Button text="Calendar" styleClass="sidebar-btn"/>
+
+        <VBox spacing="5" style="-fx-padding: 20;">
+            <Label text="Events" styleClass="sidebar-subtitle"/>
+            <Label text="🟦 Optional"/>
+            <Label text="🟩 Normal"/>
+            <Label text="🟨 Important"/>
+            <Label text="🟥 Urgent"/>
+            <Label text="⬜ Completed"/>
+        </VBox>
+
+        <Button text="Log-out" styleClass="logout-btn"/>
+    </VBox>
+
+    <!-- Center To-Do List Section -->
+    <VBox spacing="15" padding="20" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="TO-DO LIST" styleClass="title-label"/>
+            <Button fx:id="addTaskButton" text="+" onAction="#addTask" styleClass="add-button"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <TextField fx:id="taskInput" promptText="Enter a new task..." HBox.hgrow="ALWAYS"/>
+        </HBox>
+
+        <ScrollPane fitToWidth="true" prefHeight="400">
+            <VBox fx:id="todoListContainer" spacing="10" padding="10"/>
+        </ScrollPane>
+    </VBox>
+
+    <!-- Right Notes Section -->
+    <VBox spacing="15" padding="20" styleClass="notes-section">
+        <Label text="Notes" styleClass="title-label"/>
+        <VBox spacing="10">
+            <Label text="“Lorem ipsum dolor sit amet…”" styleClass="note-item"/>
+            <Label text="“Lorem ipsum dolor sit amet…”" styleClass="note-item"/>
+            <Label text="“Lorem ipsum dolor sit amet…”" styleClass="note-item"/>
+        </VBox>
+    </VBox>
+
+</BorderPane>
