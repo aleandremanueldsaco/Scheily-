@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public class RegisterController {
+public class    RegisterController {
 
     @FXML
     private TextField firstNameField;
