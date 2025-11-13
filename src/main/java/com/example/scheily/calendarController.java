@@ -61,6 +61,15 @@ public class calendarController implements Initializable {
         drawCalendar();
     }
 
+    // ===================== SWITCH TO WEEKLY VIEW =========================
+    @FXML
+    private void week(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("weeklyCalendar.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
     // ===================== ADD ACTIVITY POPUP =========================
     @FXML
     void openAddActivityPopup(ActionEvent event) {
@@ -82,19 +91,6 @@ public class calendarController implements Initializable {
             e.printStackTrace();
         }
     }
-    @FXML
-    private void week(ActionEvent event) throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("weeklyCalendar.fxml"));
-
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     // ===================== CALENDAR DRAW =========================
     private void drawCalendar() {
@@ -107,6 +103,7 @@ public class calendarController implements Initializable {
         double spacingH = calendar.getHgap();
         double spacingV = calendar.getVgap();
 
+        // Only show activities that belong to the current visible month
         Map<Integer, List<CalendarActivity>> calendarActivityMap = getCalendarActivitiesMonth(dateFocus);
 
         int monthMaxDate = dateFocus.getMonth().maxLength();
@@ -144,17 +141,18 @@ public class calendarController implements Initializable {
                         date.setTranslateY(textTranslationY);
                         stackPane.getChildren().add(date);
 
-                        List<CalendarActivity> calendarActivities = calendarActivityMap.get(currentDate);
-                        if (calendarActivities != null) {
-                            createCalendarActivity(calendarActivities, rectangleHeight, rectangleWidth, stackPane);
+                        // Display events for that exact date
+                        List<CalendarActivity> activitiesForDay = calendarActivityMap.get(currentDate);
+                        if (activitiesForDay != null) {
+                            createCalendarActivity(activitiesForDay, rectangleHeight, rectangleWidth, stackPane);
                         }
-                    }
 
-                    // Highlight today
-                    if (today.getYear() == dateFocus.getYear() &&
-                            today.getMonth() == dateFocus.getMonth() &&
-                            today.getDayOfMonth() == currentDate) {
-                        rectangle.setStroke(Color.BLUE);
+                        // Highlight today
+                        if (today.getYear() == dateFocus.getYear() &&
+                                today.getMonth() == dateFocus.getMonth() &&
+                                today.getDayOfMonth() == currentDate) {
+                            rectangle.setStroke(Color.BLUE);
+                        }
                     }
                 }
 
@@ -169,7 +167,6 @@ public class calendarController implements Initializable {
                                         StackPane stackPane) {
 
         VBox calendarActivityBox = new VBox();
-
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 
         for (int k = 0; k < calendarActivities.size(); k++) {
@@ -182,16 +179,14 @@ public class calendarController implements Initializable {
 
             CalendarActivity act = calendarActivities.get(k);
             String formattedTime = act.getDate().toLocalTime().format(timeFormatter);
-
             Text text = new Text(act.getClientName() + ", " + formattedTime);
-            calendarActivityBox.getChildren().add(text);
 
-            calendarActivityBox.setStyle(
+            VBox box = new VBox(text);
+            box.setStyle(
                     "-fx-background-color: " + act.getColorHex() + "; " +
                             "-fx-padding: 3; -fx-background-radius: 5;"
             );
-
-            text.setOnMouseClicked(mouseEvent -> System.out.println(text.getText()));
+            calendarActivityBox.getChildren().add(box);
         }
 
         calendarActivityBox.setTranslateY((rectangleHeight / 2) * 0.20);
@@ -210,13 +205,21 @@ public class calendarController implements Initializable {
         return calendarActivityMap;
     }
 
+    /**
+     * Filters events so only those in the current displayed month & year appear.
+     */
     private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDateTime dateFocus) {
-        List<CalendarActivity> calendarActivities = new ArrayList<>();
+        List<CalendarActivity> monthActivities = new ArrayList<>();
 
-        // Include user-added events
-        calendarActivities.addAll(addedActivities);
+        for (CalendarActivity activity : addedActivities) {
+            ZonedDateTime activityDate = activity.getDate();
+            if (activityDate.getMonthValue() == dateFocus.getMonthValue() &&
+                    activityDate.getYear() == dateFocus.getYear()) {
+                monthActivities.add(activity);
+            }
+        }
 
-        return createCalendarMap(calendarActivities);
+        return createCalendarMap(monthActivities);
     }
 
     // Called from AddActivityController
