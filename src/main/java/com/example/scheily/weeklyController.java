@@ -69,7 +69,7 @@ public class weeklyController implements Initializable {
             Parent root = loader.load();
 
             AddactivityController addActivityController = loader.getController();
-            addActivityController.setCalendarController(this);
+            addActivityController.setWeeklyController(this);
 
             Stage stage = new Stage();
             stage.setTitle("Add New Activity");
@@ -86,6 +86,20 @@ public class weeklyController implements Initializable {
     private void month(ActionEvent event) throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("calendar.fxml"));
+
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void day(ActionEvent event) throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("dayCalendar.fxml"));
 
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -179,8 +193,6 @@ public class weeklyController implements Initializable {
             }
         }
 
-
-
         drawActivities(startOfWeek);
     }
 
@@ -235,7 +247,7 @@ public class weeklyController implements Initializable {
         return createCalendarMap(calendarActivities);
     }
 
-    // Called from AddActivityController
+
     public void addActivity(CalendarActivity activity) {
         addedActivities.add(activity);
         drawCalendar();

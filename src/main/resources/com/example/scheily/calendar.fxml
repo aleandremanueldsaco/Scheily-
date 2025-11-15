@@ -57,7 +57,7 @@
             </ImageView>
          </children>
       </Pane>
-      <HBox layoutX="172.0" layoutY="83.0" prefHeight="25.0" prefWidth="259.0" AnchorPane.topAnchor="83.0">
+      <HBox layoutX="153.0" layoutY="68.0" prefHeight="25.0" prefWidth="259.0" AnchorPane.topAnchor="68.0">
          <children>
             <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#backOneMonth" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #BFBFBF; -fx-background-radius: 6; -fx-border-radius: 6;" text="Button" />
             <Text fx:id="year" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="104.53839373588562">
@@ -65,7 +65,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text fx:id="month" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="106.53845596313477">
+            <Text fx:id="month" layoutX="160.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="106.53845596313477">
                <font>
                   <Font size="18.0" />
                </font>
@@ -116,8 +116,8 @@
          </children>
       </HBox>
       <FlowPane fx:id="calendar" layoutX="153.0" layoutY="175.0" prefHeight="399.0" prefWidth="644.0" />
-      <Button layoutX="688.0" layoutY="83.0" mnemonicParsing="false" onAction="#openAddActivityPopup" style="-fx-background-color: #FFFFFF; -fx-border-color: #BFBFBF; -fx-background-radius: 6; -fx-border-radius: 6;" text="Add Event" />
-      <HBox layoutX="625.0" layoutY="37.0" prefHeight="28.0" prefWidth="165.0">
+      <Button layoutX="731.0" layoutY="68.0" mnemonicParsing="false" onAction="#openAddActivityPopup" style="-fx-background-color: #FFFFFF; -fx-border-color: #BFBFBF; -fx-background-radius: 6; -fx-border-radius: 6;" text="Add Event" />
+      <HBox layoutX="659.0" layoutY="21.0" prefHeight="28.0" prefWidth="165.0">
          <children>
             <Button mnemonicParsing="false" onAction="#openAddActivityPopup" style="-fx-background-color: #FFFFFF; -fx-border-color: #BFBFBF; -fx-background-radius: 6; -fx-border-radius: 6;" text="Day" />
             <Button mnemonicParsing="false" onAction="#week" style="-fx-background-color: #FFFFFF; -fx-border-color: #BFBFBF; -fx-background-radius: 6; -fx-border-radius: 6;" text="Week" />
