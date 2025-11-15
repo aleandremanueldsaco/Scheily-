@@ -101,7 +101,7 @@ public class weeklyController implements Initializable {
         calendar.getChildren().clear();
         calendar.getColumnConstraints().clear();
         calendar.getRowConstraints().clear();
-        calendar.setGridLinesVisible(true);
+
 
         ZonedDateTime startOfWeek = dateFocus;
         ZonedDateTime endOfWeek = dateFocus.plusDays(6);
@@ -147,18 +147,40 @@ public class weeklyController implements Initializable {
                 header.setStyle("-fx-background-color: #d0e7ff; -fx-border-color: gray;");
             }
         }
+        StackPane corner = new StackPane();
+        corner.setStyle("-fx-border-color: #cccccc; -fx-border-width: 0.5;");
+        calendar.add(corner, 0, 0);
 
-        // ==== time labels ====
+
+        // ==== TIME COLUMN (left column) ====
         DateTimeFormatter timeFmt = DateTimeFormatter.ofPattern("h a");
         for (int r = 0; r < hours; r++) {
             LocalTime t = startTime.plusHours(r);
             StackPane timeBox = new StackPane(new Text(t.format(timeFmt)));
             timeBox.setAlignment(Pos.TOP_LEFT);
             timeBox.setPadding(new Insets(5));
-            calendar.add(timeBox, 0, r + 1); // shift down 1 row (header row first)
+
+            // Manual borders (not gridLinesVisible)
+            timeBox.setStyle("-fx-border-color: #cccccc; -fx-border-width: 0.5;");
+            calendar.add(timeBox, 0, r + 1);
         }
 
-        // ==== draw events ====
+// ==== CALENDAR CELLS (every day × hour) ====
+        for (int r = 0; r < hours; r++) {
+            for (int c = 0; c < 7; c++) {
+
+                StackPane cell = new StackPane();
+                cell.setMinSize(80, 50);
+
+                // This forces borders to ALWAYS stay visible
+                cell.setStyle("-fx-border-color: #cccccc; -fx-border-width: 0.5;");
+
+                calendar.add(cell, c + 1, r + 1);
+            }
+        }
+
+
+
         drawActivities(startOfWeek);
     }
 

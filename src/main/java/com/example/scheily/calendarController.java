@@ -36,7 +36,7 @@ public class calendarController implements Initializable {
     @FXML
     private FlowPane calendar;
 
-    // Store manually added activities
+
     private final List<CalendarActivity> addedActivities = new ArrayList<>();
 
     @Override
@@ -103,7 +103,7 @@ public class calendarController implements Initializable {
         double spacingH = calendar.getHgap();
         double spacingV = calendar.getVgap();
 
-        // Only show activities that belong to the current visible month
+
         Map<Integer, List<CalendarActivity>> calendarActivityMap = getCalendarActivitiesMonth(dateFocus);
 
         int monthMaxDate = dateFocus.getMonth().maxLength();
@@ -141,13 +141,13 @@ public class calendarController implements Initializable {
                         date.setTranslateY(textTranslationY);
                         stackPane.getChildren().add(date);
 
-                        // Display events for that exact date
+
                         List<CalendarActivity> activitiesForDay = calendarActivityMap.get(currentDate);
                         if (activitiesForDay != null) {
                             createCalendarActivity(activitiesForDay, rectangleHeight, rectangleWidth, stackPane);
                         }
 
-                        // Highlight today
+
                         if (today.getYear() == dateFocus.getYear() &&
                                 today.getMonth() == dateFocus.getMonth() &&
                                 today.getDayOfMonth() == currentDate) {
@@ -205,9 +205,7 @@ public class calendarController implements Initializable {
         return calendarActivityMap;
     }
 
-    /**
-     * Filters events so only those in the current displayed month & year appear.
-     */
+
     private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDateTime dateFocus) {
         List<CalendarActivity> monthActivities = new ArrayList<>();
 
@@ -222,7 +220,7 @@ public class calendarController implements Initializable {
         return createCalendarMap(monthActivities);
     }
 
-    // Called from AddActivityController
+
     public void addActivity(CalendarActivity activity) {
         addedActivities.add(activity);
         calendar.getChildren().clear();
