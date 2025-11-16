@@ -16,7 +16,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheily.dayController">
    <children>
       <Pane prefHeight="598.0" prefWidth="906.0">
@@ -45,7 +44,7 @@
                   <MenuButton contentDisplay="CENTER" graphicTextGap="5.0" layoutX="98.0" layoutY="188.0" maxHeight="100.0" maxWidth="21.0" minHeight="17.0" minWidth="17.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="21.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #BFBFBF; -fx-background-radius: 6; -fx-border-radius: 6;" text="Calendar">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Calendar" />
-                        <MenuItem mnemonicParsing="false" text="Schedule" />
+                        <MenuItem mnemonicParsing="false" onAction="#schedule" text="Schedule" />
                      </items>
                   </MenuButton>
                   <Text layoutX="47.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Calendar" />

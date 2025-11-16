@@ -69,6 +69,10 @@ public class dayController implements Initializable {
     private void week(ActionEvent event) throws IOException {
         loadScene(event, "weeklyCalendar.fxml");
     }
+    @FXML
+    private void schedule(ActionEvent event) throws IOException {
+        loadScene(event, "schedule.fxml");
+    }
 
 
     private void loadScene(ActionEvent event, String fxmlFile) throws IOException {
