@@ -109,6 +109,20 @@ public class weeklyController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    private void schedule(ActionEvent event) throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("schedule.fxml"));
+
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     // ===================== WEEKLY CALENDAR DRAW =========================
     private void drawCalendar() {

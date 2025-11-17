@@ -1,0 +1,59 @@
+ .root-pane {
+                    -fx-background-color: #f7f7f7;
+                }
+                .header-label {
+                    -fx-font-size: 24pt;
+                    -fx-font-weight: bold;
+                    -fx-text-fill: #333;
+                }
+                .add-button {
+                    -fx-background-color: #e57373;
+                    -fx-text-fill: white;
+                    -fx-font-weight: bold;
+                    -fx-padding: 8 16 8 16;
+                    -fx-border-radius: 5px;
+                    -fx-background-radius: 5px;
+                    -fx-cursor: hand;
+                }
+                .grid-container {
+                    -fx-border-color: #ccc;
+                    -fx-border-width: 1;
+                    -fx-background-color: white;
+                }
+                .grid-cell {
+                    -fx-border-color: #eee;
+                    -fx-border-width: 0 0 1 1; /* Bottom and left border for grid lines */
+                    -fx-pref-height: 25; /* Keep height for 30-min slot visualization */
+                }
+                .time-label {
+                    -fx-font-size: 10pt;
+                    -fx-font-weight: normal;
+                    -fx-text-fill: #555;
+                    -fx-padding: 0 5 0 0;
+                    -fx-translate-y: -7; /* Shift label up to align with the start of the hour */
+                    -fx-alignment: top-right;
+                }
+                .day-label {
+                    -fx-font-size: 12pt;
+                    -fx-font-weight: bold;
+                    -fx-padding: 5 0 5 0;
+                }
+                .class-block {
+                    -fx-padding: 2 5 2 5; /* Reduced padding */
+                    -fx-border-radius: 5;
+                    -fx-background-radius: 5;
+                    -fx-font-size: 8.5pt; /* Slightly smaller base font size */
+                    -fx-text-fill: #333;
+                    -fx-border-width: 1px;
+                    -fx-border-color: rgba(0, 0, 0, 0.1);
+                    -fx-max-width: infinity;
+                    -fx-max-height: infinity;
+                }
+                .class-name {
+                    -fx-font-weight: bold;
+                    -fx-font-size: 9pt; /* Keep class name slightly larger */
+                }
+                 .class-block .label { /* Target all labels within a class-block */
+                    -fx-line-spacing: 0; /* Reduce line spacing */
+                    -fx-padding: 0;
+                }
