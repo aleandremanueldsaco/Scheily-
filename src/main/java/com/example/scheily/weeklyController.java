@@ -266,4 +266,26 @@ public class weeklyController implements Initializable {
         addedActivities.add(activity);
         drawCalendar();
     }
+    @FXML
+    private void Logout(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("login-page.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    @FXML
+    private void Todolist(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("todolist.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    @FXML
+    private void Home(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 }

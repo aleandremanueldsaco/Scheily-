@@ -38,7 +38,7 @@ public class dayController implements Initializable {
 
     private final List<CalendarActivity> addedActivities = new ArrayList<>();
 
-    private final int hoursInDay = 10;
+    private final int hoursInDay = 8;
     private final LocalTime calendarStartTime = LocalTime.of(8, 0);
 
     @Override
@@ -72,6 +72,18 @@ public class dayController implements Initializable {
     @FXML
     private void schedule(ActionEvent event) throws IOException {
         loadScene(event, "schedule.fxml");
+    }
+    @FXML
+    private void Home(ActionEvent event) throws IOException {
+        loadScene(event, "dashboard.fxml");
+    }
+    @FXML
+    private void Todolist(ActionEvent event) throws IOException {
+        loadScene(event, "todolist.fxml");
+    }
+    @FXML
+    private void Logout(ActionEvent event) throws IOException {
+        loadScene(event, "login-page.fxml");
     }
 
 

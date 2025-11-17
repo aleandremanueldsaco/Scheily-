@@ -2,11 +2,14 @@ package com.example.scheily;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
@@ -254,4 +257,40 @@ public class scheduleController {
         scheduleData.add(newEntry);
         // The listener in initialize() handles the grid repaint automatically
     }
+    @FXML
+    private void Todolist(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("todolist.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    @FXML
+    private void calendar(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("calendar.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    @FXML
+    private void schedule(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("schedule.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("login-page.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    @FXML
+    private void home(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("dahsboard.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 }
