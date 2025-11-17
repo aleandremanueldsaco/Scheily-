@@ -1,89 +1,161 @@
 package com.example.scheily;
-import javafx.collections.FXCollections;
 
-import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button; // Import Button
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import java.util.HashMap;
-import java.util.Map;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.util.Callback;
 
-/**
- * The Controller handles all application logic, state management,
- * and data manipulation for the Todo application.
- * It manages the ObservableList of Tasks.
- */
+import java.io.IOException;
+
 public class TodoController {
 
-    private final ObservableList<Task> taskList = FXCollections.observableArrayList();
-    private final Map<String, String> colorMap = createColorMap();
-    private String selectedColor = colorMap.get("Red");
+    @FXML
+    private ListView<ToDoItem> todoListView;
 
-    // --- Getters for View access ---
-    public ObservableList<Task> getTaskList() {
-        return taskList;
+    @FXML
+    public void initialize() {
+        todoListView.setItems(InputController.getTodoList());
+
+        todoListView.setCellFactory(new Callback<ListView<ToDoItem>, ListCell<ToDoItem>>() {
+            @Override
+            public ListCell<ToDoItem> call(ListView<ToDoItem> listView) {
+                return new ToDoListCell();
+            }
+        });
     }
 
-    public Map<String, String> getColorMap() {
-        return colorMap;
-    }
+    @FXML
+    private void openInputView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("addcontent.fxml"));
+            VBox inputRoot = loader.load();
 
-    public String getSelectedColor() {
-        return selectedColor;
-    }
+            Stage inputStage = new Stage();
+            inputStage.setTitle("Add New To-Do Item");
+            inputStage.setScene(new Scene(inputRoot));
 
-    // --- Mutators for View interaction ---
-    public void setSelectedColor(String hex) {
-        this.selectedColor = hex;
-    }
+            inputStage.initModality(Modality.WINDOW_MODAL);
+            inputStage.show();
 
-    /**
-     * Utility method to create a map of color names to hex codes.
-     */
-    private Map<String, String> createColorMap() {
-        Map<String, String> map = new HashMap<>();
-        map.put("Red", "#F87171");
-        map.put("Lime", "#4ADE80");
-        map.put("Blue", "#60A5FA");
-        map.put("Yellow", "#FACC15");
-        return map;
-    }
-
-    /**
-     * Adds a new task to the list based on modal input fields, called by the View's submit action.
-     */
-    public void addTask(TextField titleField, TextArea descriptionArea, ComboBox<String> statusCombo, VBox inputModalContainer) {
-        String title = titleField.getText().trim();
-        String description = descriptionArea.getText().trim();
-        String status = statusCombo.getValue();
-
-        if (!title.isEmpty()) {
-            Task newTask = new Task(title, description, status, selectedColor);
-            taskList.add(newTask);
-
-            // Reset fields and hide modal (This is a cross-concern, but necessary for clean UI flow)
-            titleField.clear();
-            descriptionArea.clear();
-            statusCombo.setValue("To-do");
-            inputModalContainer.setVisible(false);
-        } else {
-            // Show an alert if validation fails
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Title cannot be empty!", ButtonType.OK);
-            alert.setTitle("Input Error");
-            alert.setHeaderText(null);
-            alert.showAndWait();
+        } catch (IOException e) {
+            System.err.println("Error loading InputView.fxml: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    /**
-     * Deletes a specific task from the list, called by the TaskCell's delete button action.
-     */
-    public void deleteTask(Task task) {
-        if (task != null) {
-            taskList.remove(task);
+    @FXML
+    private void refreshList() {
+        todoListView.refresh();
+    }
+
+    // --- Custom Cell Implementation for the List View ---
+
+    private static class ToDoListCell extends ListCell<ToDoItem> {
+        private final VBox itemLayout;
+        private final HBox headerBox;
+        private final CheckBox checkBox;
+        private final Label titleLabel;
+        private final Label statusLabel;
+        private final Label descriptionLabel;
+        private final Button deleteButton; // NEW: Delete Button
+
+        public ToDoListCell() {
+            // 1. Initialize Components
+            checkBox = new CheckBox();
+            titleLabel = new Label();
+            statusLabel = new Label();
+            descriptionLabel = new Label();
+
+            // NEW: Initialize and style the Delete Button
+            deleteButton = new Button("X"); // Use 'X' or an icon
+            deleteButton.setStyle("-fx-font-size: 10px; -fx-padding: 2 5; -fx-background-color: #f44336; -fx-text-fill: white;");
+
+            // Set up styles for other components
+            titleLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+            descriptionLabel.setStyle("-fx-font-size: 11px; -fx-text-fill: #555555;");
+            descriptionLabel.setWrapText(true);
+
+            // 2. Setup the Header (Checkbox, Title, Status, Delete Button)
+            headerBox = new HBox(10);
+            headerBox.getChildren().addAll(checkBox, titleLabel, statusLabel);
+            headerBox.getChildren().add(deleteButton); // Add delete button to the header
+            HBox.setHgrow(titleLabel, Priority.ALWAYS); // Title takes space
+            headerBox.setStyle("-fx-alignment: center-left;");
+
+            // 3. Setup the Main Layout (Header, Description)
+            itemLayout = new VBox(5);
+            itemLayout.getChildren().addAll(headerBox, descriptionLabel);
+            itemLayout.setStyle("-fx-padding: 8px 10px;");
+
+            // 4. Handle CheckBox Interaction (Mark as complete)
+            checkBox.setOnAction(e -> {
+                if (getItem() != null) {
+                    toggleCompletedStyle(checkBox.isSelected());
+                }
+            });
+
+            // 5. NEW: Handle Delete Button Action
+            deleteButton.setOnAction(event -> {
+                // Get the item associated with this cell
+                ToDoItem itemToRemove = getItem();
+                if (itemToRemove != null) {
+                    // Remove the item from the shared ObservableList
+                    boolean wasRemoved = InputController.getTodoList().remove(itemToRemove);
+                    if (wasRemoved) {
+                        System.out.println("Removed item: " + itemToRemove.getTitle());
+                        // The ListView automatically updates because it's bound to the ObservableList.
+                    }
+                }
+            });
+        }
+
+        private void toggleCompletedStyle(boolean isCompleted) {
+            String strikeStyle = isCompleted ? "-fx-strikethrough: true; -fx-text-fill: gray;" : "-fx-strikethrough: false; -fx-text-fill: black;";
+            titleLabel.setStyle(titleLabel.getStyle().replace("-fx-strikethrough: true;", "").replace("-fx-strikethrough: false;", "") + strikeStyle);
+            descriptionLabel.setStyle(descriptionLabel.getStyle().replace("-fx-strikethrough: true;", "").replace("-fx-strikethrough: false;", "") + strikeStyle);
+            statusLabel.setStyle(statusLabel.getStyle().replace("-fx-strikethrough: true;", "").replace("-fx-strikethrough: false;", "") + strikeStyle);
+        }
+
+        @Override
+        protected void updateItem(ToDoItem item, boolean empty) {
+            super.updateItem(item, empty);
+
+            if (empty || item == null) {
+                setGraphic(null);
+                setText(null);
+                setStyle("");
+            } else {
+                // 1. Update Content
+                titleLabel.setText(item.getTitle());
+                descriptionLabel.setText(item.getDescription());
+                statusLabel.setText("[" + item.getStatus() + "]");
+
+                // 2. Apply ColorPicker color to the background
+                Color color = item.getColor();
+                String hexColor = String.format("#%02X%02X%02X",
+                        (int)(color.getRed() * 255),
+                        (int)(color.getGreen() * 255),
+                        (int)(color.getBlue() * 255));
+
+                setStyle("-fx-background-color: " + hexColor + "22; -fx-border-color: " + hexColor + "; -fx-border-width: 0 0 0 4;");
+
+                // 3. Reset or apply completion styles
+                checkBox.setSelected(false);
+                toggleCompletedStyle(false);
+
+                setGraphic(itemLayout);
+            }
         }
     }
 }
