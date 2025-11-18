@@ -85,6 +85,10 @@ public class dayController implements Initializable {
     private void Logout(ActionEvent event) throws IOException {
         loadScene(event, "login-page.fxml");
     }
+    @FXML
+    private void calendar(ActionEvent event) throws IOException {
+        loadScene(event, "calendar.fxml");
+    }
 
 
     private void loadScene(ActionEvent event, String fxmlFile) throws IOException {

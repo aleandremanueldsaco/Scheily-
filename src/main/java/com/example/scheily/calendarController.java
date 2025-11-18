@@ -76,6 +76,13 @@ public class calendarController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+    @FXML
+    private void day(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("dayCalendar.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
 
     // ===================== ADD ACTIVITY POPUP =========================
