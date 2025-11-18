@@ -119,7 +119,7 @@
       <Button layoutX="731.0" layoutY="68.0" mnemonicParsing="false" onAction="#openAddActivityPopup" style="-fx-background-color: #FFFFFF; -fx-border-color: #BFBFBF; -fx-background-radius: 6; -fx-border-radius: 6;" text="Add Event" />
       <HBox layoutX="659.0" layoutY="21.0" prefHeight="28.0" prefWidth="165.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#openAddActivityPopup" style="-fx-background-color: #FFFFFF; -fx-border-color: #BFBFBF; -fx-background-radius: 6; -fx-border-radius: 6;" text="Day" />
+            <Button mnemonicParsing="false" onAction="#day" style="-fx-background-color: #FFFFFF; -fx-border-color: #BFBFBF; -fx-background-radius: 6; -fx-border-radius: 6;" text="Day" />
             <Button mnemonicParsing="false" onAction="#week" style="-fx-background-color: #FFFFFF; -fx-border-color: #BFBFBF; -fx-background-radius: 6; -fx-border-radius: 6;" text="Week" />
             <Button mnemonicParsing="false" onAction="#openAddActivityPopup" style="-fx-background-color: #000000; -fx-border-color: #BFBFBF; -fx-background-radius: 6; -fx-border-radius: 6;" text="Month" textFill="WHITE" />
          </children>
